@@ -10,9 +10,10 @@ interface BookingFormProps {
   onBack: () => void;
   service: string;
   time: string;
+  selectedBarber: string;
 }
 
-export const BookingForm = ({ onSubmit, onBack, service, time }: BookingFormProps) => {
+export const BookingForm = ({ onSubmit, onBack, service, time, selectedBarber }: BookingFormProps) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,7 +28,7 @@ export const BookingForm = ({ onSubmit, onBack, service, time }: BookingFormProp
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    onSubmit({...formData, selectedBarber});
   };
   
   return (
@@ -44,7 +45,7 @@ export const BookingForm = ({ onSubmit, onBack, service, time }: BookingFormProp
       
       <h2 className="text-2xl font-playfair mb-2">Complete Your Booking</h2>
       <p className="text-muted-foreground mb-6">
-        {service} on {time}
+        {service} on {time} with {selectedBarber}
       </p>
       
       <form onSubmit={handleSubmit} className="space-y-6">

@@ -4,15 +4,21 @@ import { Card } from "@/components/ui/card";
 
 const Gallery = () => {
   // Array of barbershop related images
+  // Reference images from the public/photo_gallery_images folder
   const images = [
-    "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1587909209111-5097ee578ec3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1621605815971-fbc98d665033?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1635272405118-9286d0917d91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1580618864482-f13b2f267623?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60"
+    "/photo_gallery_images/gallery_image_1.jpg",
+    "/photo_gallery_images/gallery_image_2.jpg",
+    "/photo_gallery_images/gallery_image_3.jpg",
+    "/photo_gallery_images/gallery_image_4.jpg",
+    "/photo_gallery_images/gallery_image_5.jpg",
+    "/photo_gallery_images/gallery_image_6.jpg",
+    "/photo_gallery_images/gallery_image_7.jpg",
+    "/photo_gallery_images/gallery_image_9.jpg",
+    "/photo_gallery_images/gallery_image_10.jpg",
+    "/photo_gallery_images/gallery_image_11.jpg",
+    "/photo_gallery_images/gallery_image_12.jpg",
+    "/photo_gallery_images/gallery_image_13.jpg",
+    "/photo_gallery_images/gallery_image_14.jpg"
   ];
 
   return (

@@ -1,20 +1,19 @@
-
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 
 interface BookingConfirmationProps {
   details: {
-    name: string;
-    email: string;
-    phone: string;
     service: string;
     time: string;
     notes?: string;
   };
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
   onNewBooking: () => void;
 }
 
-export const BookingConfirmation = ({ details, onNewBooking }: BookingConfirmationProps) => {
+export const BookingConfirmation = ({ details, customerName, customerEmail, customerPhone, onNewBooking }: BookingConfirmationProps) => {
   const bookingNumber = Math.floor(100000 + Math.random() * 900000); // 6-digit number
   
   return (
@@ -47,13 +46,13 @@ export const BookingConfirmation = ({ details, onNewBooking }: BookingConfirmati
           
           <div className="border-b border-border pb-3">
             <p className="text-sm text-muted-foreground">Name</p>
-            <p className="font-medium">{details.name}</p>
+            <p className="font-medium">{customerName}</p>
           </div>
           
           <div className="border-b border-border pb-3">
             <p className="text-sm text-muted-foreground">Contact Information</p>
-            <p className="font-medium">{details.email}</p>
-            <p className="font-medium">{details.phone}</p>
+            <p className="font-medium">{customerEmail}</p>
+            <p className="font-medium">{customerPhone}</p>
           </div>
           
           {details.notes && (

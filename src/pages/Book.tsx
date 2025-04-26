@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,32 +6,111 @@ import { BookingForm } from "@/components/BookingForm";
 import { ServiceSelection } from "@/components/ServiceSelection";
 import { TimeSelection } from "@/components/TimeSelection";
 import { BookingConfirmation } from "@/components/BookingConfirmation";
+import { supabase } from "@/lib/supabaseClient";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 type BookingStep = "service" | "time" | "info" | "confirmation";
+
+const barbers = [
+  "Any",
+  "Mariana L.",
+  "Christian C.",
+  "Daniel H.",
+  "Dennis H.",
+  "Eric N.",
+  "Erin L.",
+  "Ilda B.",
+  "Javier S.",
+  "Monica L.",
+  "Richard P."
+];
 
 const Book = () => {
   const [currentStep, setCurrentStep] = useState<BookingStep>("service");
   const [selectedService, setSelectedService] = useState<string>("");
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [bookingDetails, setBookingDetails] = useState<any>(null);
+  const [appointments, setAppointments] = useState<any[]>([]);
+  const [selectedBarber, setSelectedBarber] = useState<string>("Any");
+
+  useEffect(() => {
+    fetchAppointments();
+  }, []);
+
+  const fetchAppointments = async () => {
+    const { data, error } = await supabase
+      .from('appointments')
+      .select('*');
+
+    if (error) {
+      console.error("Error fetching appointments:", error);
+    } else {
+      setAppointments(data || []);
+    }
+  };
 
   const handleServiceSelect = (service: string) => {
     setSelectedService(service);
     setCurrentStep("time");
   };
 
-  const handleTimeSelect = (time: string) => {
+ const handleTimeSelect = (time: string) => {
     setSelectedTime(time);
     setCurrentStep("info");
   };
 
+  const handleBarberSelect = (barber: string) => {
+    setSelectedBarber(barber);
+  };
+
   const handleFormSubmit = (details: any) => {
     setBookingDetails({
-      ...details,
+      name: details.name,
+      email: details.email,
+      phone: details.phone,
+      notes: details.notes,
       service: selectedService,
       time: selectedTime,
     });
     setCurrentStep("confirmation");
+
+    // Save booking details to Supabase
+    const saveAppointment = async () => {
+      // Structure the data for the 'details' JSONB column
+      const appointmentDetails = {
+        name: details.name,
+        email: details.email,
+        phone: details.phone,
+        notes: details.notes,
+        barber: selectedBarber // Include selected barber
+      };
+
+      const { data, error } = await supabase
+        .from('appointments')
+        .insert([
+          {
+            service: selectedService,
+            time: selectedTime,
+            customer_name: details.name,
+            customer_email: details.email,
+            customer_phone: details.phone,
+            selected_barber: selectedBarber,
+            details: {
+              notes: details.notes
+            },
+          },
+        ]);
+
+      if (error) {
+        console.error("Error saving appointment:", error);
+      } else {
+        console.log("Appointment saved successfully!");
+        // Optionally, refresh the appointments list
+        fetchAppointments();
+      }
+    };
+
+    saveAppointment();
   };
 
   const renderStep = () => {
@@ -41,25 +119,31 @@ const Book = () => {
         return <ServiceSelection onSelect={handleServiceSelect} />;
       case "time":
         return (
-          <TimeSelection 
+          <TimeSelection
             onSelect={handleTimeSelect}
             onBack={() => setCurrentStep("service")}
             service={selectedService}
+            selectedBarber={selectedBarber}
+            appointments={appointments}
           />
         );
       case "info":
         return (
-          <BookingForm 
+          <BookingForm
             onSubmit={handleFormSubmit}
             onBack={() => setCurrentStep("time")}
             service={selectedService}
             time={selectedTime}
+            selectedBarber={selectedBarber}
           />
         );
       case "confirmation":
         return (
-          <BookingConfirmation 
-            details={bookingDetails} 
+          <BookingConfirmation
+            details={bookingDetails}
+            customerName={bookingDetails?.name}
+            customerEmail={bookingDetails?.email}
+            customerPhone={bookingDetails?.phone}
             onNewBooking={() => {
               setCurrentStep("service");
               setSelectedService("");
@@ -74,7 +158,7 @@ const Book = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="container mx-auto py-16">
+      <div className="container mx-auto py-4">
         <h1 className="font-playfair text-4xl mb-6 text-center">Book an Appointment</h1>
         
         <div className="max-w-3xl mx-auto">
@@ -114,6 +198,17 @@ const Book = () => {
               }`}></div>
             </div>
           </div>
+
+          <Select onValueChange={handleBarberSelect}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select a barber" />
+            </SelectTrigger>
+            <SelectContent>
+              {barbers.map((barber) => (
+                <SelectItem key={barber} value={barber}>{barber}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           
           <Card>
             <CardContent className="p-6">

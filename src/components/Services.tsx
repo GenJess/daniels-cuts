@@ -5,36 +5,21 @@ import { Scissors, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const services = [
-  { 
-    name: "Classic Haircuts", 
-    price: "$40",
-    description: "Traditional barbering techniques with modern styling."
-  },
-  { 
-    name: "Beard Trimming", 
-    price: "$35",
-    description: "Precise beard shaping and maintenance for a polished look."
-  },
-  { 
-    name: "Hot Towel Shave", 
-    price: "$30",
-    description: "Relaxing traditional straight razor shave with hot towels."
-  },
-  { 
-    name: "Hair Styling", 
-    price: "$50",
-    description: "Custom styling with premium products for any occasion."
-  },
-  { 
-    name: "Facial Treatments", 
-    price: "$45",
-    description: "Revitalizing skin care treatments tailored for men."
-  },
-  { 
-    name: "Grooming Packages", 
-    price: "from $75",
-    description: "Complete packages combining our premium services."
-  },
+  { name: "Men's Haircut", price: "$40", description: "Traditional and modern haircuts for men." },
+  { name: "Men's Haircut (Seniors, Military/Veterans, First Responders, Kids)", price: "$35", description: "Discounted haircut for seniors (65+), military, veterans, first responders, and kids (9 and under)." },
+  { name: "Buzz Cut", price: "$30", description: "Simple, clean buzz cut." },
+  { name: "Nape Undercut", price: "$30", description: "Undercut at the nape of the neck." },
+  { name: "Shaved Head", price: "$30", description: "Full head shave." },
+  { name: "Skin Tight Bald Fade", price: "$45", description: "Skin-tight fade for a sharp look." },
+  { name: "Beard Trim and Shaves", price: "$30", description: "Beard trimming and traditional shaves." },
+  { name: "Line Up (Back of Neck and Sideburns)", price: "$18", description: "Line up for back of neck and sideburns." },
+  { name: "Line Up (Forehead, Back of Neck, Sideburns)", price: "$25", description: "Line up for forehead, back of neck, and sideburns." },
+  { name: "Nose and Ears Wax", price: "$15", description: "Waxing for nose and ears." },
+  { name: "Eyebrow Wax/Razor", price: "$15", description: "Eyebrow shaping with wax or razor." },
+  { name: "Shampoo and Conditioner Hair Wash", price: "$10", description: "Hair wash with shampoo and conditioner." },
+  { name: "Hair Design", price: "$15+", description: "Custom hair designs. Pricing varies depending on art difficulty." },
+  { name: "Grooming Packages", price: "See booking site", description: "Complete packages combining premium services." },
+  { name: "Discounts", price: "Available", description: "Discounts for Seniors, Military, Veterans, and First Responders available." },
 ];
 
 export const Services = () => {

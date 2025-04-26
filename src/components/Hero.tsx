@@ -27,31 +27,17 @@ export const Hero = () => {
             <h1 className="font-playfair text-4xl md:text-6xl lg:text-[6rem] leading-none mb-6 text-white">
               Daniels<br />Barbershop
             </h1>
+            <p className="text-lg md:text-2xl text-white/80 mb-8 max-w-xl">
+              Classic cuts, modern style. Experience the art of grooming in a refined, welcoming atmosphere.
+            </p>
+            <Link to="/book">
+              <Button className="bg-primary hover:bg-primary/90 text-white font-semibold text-xl px-8 py-4 rounded shadow-lg transition-all duration-200">
+                Book Your Appointment
+              </Button>
+            </Link>
           </div>
         </div>
 
-        {/* Services section at bottom right */}
-        <div className="self-end mb-12 w-full sm:w-80 md:w-96">
-          <div className="bg-background/80 backdrop-blur p-4 md:p-6 rounded-lg">
-            <h2 className="text-xl md:text-2xl mb-3 md:mb-4 font-playfair">Our Services</h2>
-            <div className="space-y-2 md:space-y-3">
-              {services.map((service) => (
-                <div 
-                  key={service.name}
-                  className="flex items-center justify-between border-b border-muted pb-2"
-                >
-                  <span>{service.name}</span>
-                  <span className="font-medium">{service.price}</span>
-                </div>
-              ))}
-              <Link to="/book" className="block mt-3 md:mt-4">
-                <Button variant="outline" size="sm" className="w-full">
-                  Book Now <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
