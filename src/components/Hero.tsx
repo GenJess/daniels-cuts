@@ -9,42 +9,53 @@ export const Hero = () => {
     { name: "Beard Trimming", price: "$35" },
     { name: "Shaving", price: "$30" },
     { name: "Hair Styling", price: "$50" },
-    { name: "Facial Treatments", price: "Book →" },
-    { name: "Grooming Packages", price: "$75" },
   ];
 
   return (
-    <div className="h-[calc(100vh-4rem)] flex items-center">
-      <div className="container mx-auto grid grid-cols-2 gap-12 items-center">
-        <div>
-          <h1 className="font-playfair text-[6rem] leading-none mb-6">
-            The<br />Gentleman's<br />Club
-          </h1>
-          <Link to="/book">
-            <Button variant="outline" size="lg">
-              Book Appointment <ArrowRight className="ml-2" />
-            </Button>
-          </Link>
+    <div className="h-[calc(100vh-4rem)] relative">
+      {/* Main splash image */}
+      <div className="absolute inset-0 z-0">
+        <div className="h-full w-full bg-[url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')] bg-cover bg-center">
+          <div className="absolute inset-0 bg-background/60"></div>
+        </div>
+      </div>
+
+      <div className="container mx-auto relative z-10 h-full flex flex-col">
+        {/* Main heading */}
+        <div className="flex-grow flex items-center">
+          <div className="max-w-2xl">
+            <h1 className="font-playfair text-[6rem] leading-none mb-6 text-white">
+              The<br />Gentleman's<br />Club
+            </h1>
+            <Link to="/book">
+              <Button variant="outline" size="lg">
+                Book Appointment <ArrowRight className="ml-2" />
+              </Button>
+            </Link>
+          </div>
         </div>
 
-        <div className="space-y-6">
-          {services.map((service) => (
-            <div 
-              key={service.name}
-              className="flex items-center justify-between border-b border-muted pb-4"
-            >
-              <span className="text-xl">{service.name}</span>
-              {service.price === "Book →" ? (
-                <Link to="/book">
-                  <Button variant="outline" size="sm">
-                    Book →
-                  </Button>
-                </Link>
-              ) : (
-                <span className="text-xl">{service.price}</span>
-              )}
+        {/* Services section at bottom right */}
+        <div className="self-end mb-12 w-96">
+          <div className="bg-background/80 backdrop-blur p-6 rounded-lg">
+            <h2 className="text-2xl mb-4 font-playfair">Our Services</h2>
+            <div className="space-y-3">
+              {services.map((service) => (
+                <div 
+                  key={service.name}
+                  className="flex items-center justify-between border-b border-muted pb-2"
+                >
+                  <span>{service.name}</span>
+                  <span className="font-medium">{service.price}</span>
+                </div>
+              ))}
+              <Link to="/book" className="block mt-4">
+                <Button variant="outline" size="sm" className="w-full">
+                  Book Now <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>

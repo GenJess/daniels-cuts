@@ -12,7 +12,6 @@ export const Navbar = () => {
         
         <div className="flex items-center space-x-8">
           <Link to="/" className="text-sm font-medium hover:text-primary">About Us</Link>
-          <Link to="/services" className="text-sm font-medium hover:text-primary">Services</Link>
           <Link to="/gallery" className="text-sm font-medium hover:text-primary">Gallery</Link>
           <Link to="/contact" className="text-sm font-medium hover:text-primary">Contact</Link>
           <Link to="/book" className="text-sm font-medium hover:text-primary">Book Appointment</Link>
