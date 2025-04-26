@@ -1,5 +1,5 @@
 
-import { Instagram, TiktokIcon } from "lucide-react";
+import { Instagram, Music } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
@@ -23,7 +23,7 @@ export const Navbar = () => {
             <Instagram className="h-5 w-5" />
           </a>
           <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-            <TiktokIcon className="h-5 w-5" />
+            <Music className="h-5 w-5" />
           </a>
           <Link to="/book" className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors">
             Book Now
