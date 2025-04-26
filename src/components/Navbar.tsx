@@ -7,10 +7,15 @@ export const Navbar = () => {
     <nav className="h-16 bg-background/95 backdrop-blur border-b border-border">
       <div className="container h-full mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
+          <img 
+            src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3" 
+            alt="Daniels Barbershop Logo" 
+            className="h-10 w-10 rounded-full object-cover"
+          />
           <span className="font-playfair text-lg font-semibold">DanielsBarbershop</span>
         </Link>
         
-        <div className="flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-8">
           <Link to="/" className="text-sm font-medium hover:text-primary">About Us</Link>
           <Link to="/gallery" className="text-sm font-medium hover:text-primary">Gallery</Link>
           <Link to="/contact" className="text-sm font-medium hover:text-primary">Contact</Link>
